@@ -133,7 +133,7 @@ function replaceBody() {
       document.body.style.backgroundSize = 'contain';
       setTimeout(() => {
         document.body.style.backgroundImage = '';
-      }, 20);
+      }, 21);
     }
   }, 5000)
 }
