@@ -1,0 +1,25 @@
+.button-list {
+    display: flex;
+    justify-content: space-between;
+}
+  
+.button {
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.button:hover {
+    background-color: #b0b0b0;
+}
+
+.button.highlighted {
+    background-color: #4285f4;
+    color: white;
+    transform: scale(1.1);
+}
+  
