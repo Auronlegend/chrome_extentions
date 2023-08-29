@@ -1,4 +1,3 @@
-import { addListener } from "process";
 import { loadSelectedVowel } from "../data/LocalStorage";
 import { replaceVowelsInDocument } from "./VowelsReplacer";
 

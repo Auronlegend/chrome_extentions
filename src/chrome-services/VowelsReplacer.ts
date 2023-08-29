@@ -10,11 +10,19 @@ const replaceVowelsInText = (text: string, vowel: string) => text.split('')
   .map(charToVowelLambda(vowel))
   .join('')
 
+
 const getTextNodes = (parent: HTMLElement | Node) => {
   const walker = document.createTreeWalker(
     parent,
     NodeFilter.SHOW_TEXT,
-    null
+    {
+      acceptNode: function(node: Node) {
+        if (['SCRIPT', 'STYLE'].includes(node.parentNode?.nodeName.toUpperCase() ?? '')) {
+          return NodeFilter.FILTER_REJECT;
+        }
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    },
   );
   const textNodes = [];
 
