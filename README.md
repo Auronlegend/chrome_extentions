@@ -2,9 +2,15 @@
 
 Fai così:
 
-### `npm install`
+```bash
+npm install
+```
 
-### `npm run build`
+Poi fai così:
 
-Butta la cartella build dentro Chrome, e salvati.
+```bash
+npm run build
+``````
+
+Butta la cartella build dentro Chrome nella shtoria delle eshtensioni, e salvati.
 
