@@ -1,23 +1,23 @@
-import { loadSelectedVowel } from "../data/LocalStorage";
-import { replaceVowelsInDocument } from "./VowelsReplacer";
+import { loadSelectedVowel } from '../data/LocalStorage';
+import { replaceVowelsInDocument } from './VowelsReplacer';
 
 export {}
 
-function hook_replaceVowels(vowel: string, root?: any) {
+function replaceVowels (vowel: string, root?: any): void {
   replaceVowelsInDocument(root ?? document.body, vowel.toLowerCase())
 }
 
 // Function called when a new message is received
 const messagesFromReactAppListener = (
-    msg: any,
-    sender: chrome.runtime.MessageSender,
-    sendResponse: (response: any) => void
-) => {    
-    if (msg.selectedVowel) {
-        hook_replaceVowels(msg.selectedVowel as string, document);
-    }
+  msg: any,
+  _sender: chrome.runtime.MessageSender,
+  sendResponse: (response: any) => void
+): void => {
+  if (msg.selectedVowel !== undefined) {
+    replaceVowels(msg.selectedVowel as string, document);
+  }
 
-    sendResponse("OK");
+  sendResponse('OK');
 }
 
 /**
@@ -25,11 +25,11 @@ const messagesFromReactAppListener = (
 */
 chrome.runtime.onMessage.addListener(messagesFromReactAppListener);
 
-window.onload = (ev) => {
-  console.log("window onload replacement:");
-  loadSelectedVowel().then((vowel) => {
-    if (vowel) {
-      hook_replaceVowels(vowel, window.document);
+window.onload = (_ev) => {
+  console.log('window onload replacement:');
+  void loadSelectedVowel().then((vowel) => {
+    if (vowel !== undefined) {
+      replaceVowels(vowel, window.document);
     }
   });
 }
