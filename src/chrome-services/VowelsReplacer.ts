@@ -11,7 +11,6 @@ const replaceVowelsInText = (text: string, vowel: string) => text.split('')
   .join('')
 
 const getTextNodes = (parent: HTMLElement | Node) => {
-  console.log("Getting text nodes");
   const walker = document.createTreeWalker(
     parent,
     NodeFilter.SHOW_TEXT,
@@ -21,8 +20,6 @@ const getTextNodes = (parent: HTMLElement | Node) => {
 
   let node = undefined
   while (node = walker.nextNode()) {
-    console.log("Node: ");
-    console.log(node);
     textNodes.push(node);
   }
   return textNodes;
