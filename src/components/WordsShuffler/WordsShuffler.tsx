@@ -7,10 +7,8 @@ const shuffleWordsInActiveTab = (shuffle: boolean) => async (): Promise<void> =>
 
 const WordsShuffler = (props: { title?: string }): ReactElement => {
   React.useEffect(() => {
-    console.log('hello')
     void shuffleWordsInActiveTab(true)
   })
-  console.log(props.title, 'aaaaaaaaaaaasjhsdjahjsdhj')
   return (
         <>
             <h1>{props.title ?? 'JSON Formatter'}</h1>
