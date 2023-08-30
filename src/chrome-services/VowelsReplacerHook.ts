@@ -13,6 +13,8 @@ const messagesFromReactAppListener = (
   _sender: chrome.runtime.MessageSender,
   sendResponse: (response: any) => void
 ): void => {
+  console.log(msg, 'message')
+
   if (msg.selectedVowel !== undefined) {
     replaceVowels(msg.selectedVowel as string, document);
   }

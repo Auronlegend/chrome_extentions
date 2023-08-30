@@ -10,3 +10,25 @@ export const sendMessageToActiveTab = async (msg: any): Promise<any> => {
     });
   });
 }
+
+export const getTextNodes = (parent: HTMLElement | Node): Node[] => {
+  const walker = document.createTreeWalker(
+    parent,
+    NodeFilter.SHOW_TEXT,
+    {
+      acceptNode: function (node: Node) {
+        if (['SCRIPT', 'STYLE'].includes(node.parentNode?.nodeName.toUpperCase() ?? '')) {
+          return NodeFilter.FILTER_REJECT;
+        }
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    }
+  );
+  const textNodes = [];
+
+  let node
+  while ((node = walker.nextNode()) != null) {
+    textNodes.push(node);
+  }
+  return textNodes;
+}

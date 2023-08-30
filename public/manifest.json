@@ -1,7 +1,7 @@
 {
-  "name": "OSTONSIONO",
-  "description": "Ma stai scherzando quello che mi stai dicendo?",
-  "version": "1.0",
+  "name": "JSON formatter",
+  "description": "Makes JSON easy to read. Open source.",
+  "version": "0.7.3",
   "manifest_version": 3,
   "permissions": [
     "activeTab",
@@ -15,9 +15,9 @@
     "default_title": "Open the popup"
   },
   "icons": {
-    "16": "logo192.png",
-    "48": "logo192.png",
-    "128": "logo192.png"
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
   },
   "content_scripts": [
     {
