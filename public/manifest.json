@@ -6,7 +6,9 @@
   "permissions": [
     "activeTab",
     "storage",
-    "tabs",
+    "tabs"
+  ],
+  "host_permissions" : [
     "http://*/*", 
     "https://*/*"
   ],
