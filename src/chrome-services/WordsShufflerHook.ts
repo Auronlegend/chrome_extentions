@@ -1,4 +1,6 @@
 import { shuffleWords } from './WordsShuffler';
+import { LocalStorage } from '../data/LocalStorage';
+
 
 export {}
 
@@ -21,6 +23,14 @@ const messagesFromReactAppListener = (
 chrome.runtime.onMessage.addListener(messagesFromReactAppListener);
 
 window.onload = (_ev) => {
-  console.log('window onload shuffling:');
-  shuffleWords(document)
+  void LocalStorage.loadLocalStorageConfiguration().then((config) => {
+    if (config == null) {
+      return;
+    }
+
+    if ((config.featuresEnabled?.SHUTTLE ?? false)) {
+      shuffleWords(window.document)
+
+    }
+  })
 }
