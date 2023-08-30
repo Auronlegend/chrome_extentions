@@ -13,7 +13,11 @@ const loadSelectedVowel = async (): Promise<string | undefined> => {
 }
 
 const storeVowelReplaceEnabled = async (enabled: boolean): Promise<void> => {
-  await chrome.storage.local.set({ isVowelReplaceEnabled: enabled })
+  await chrome.storage.local.set({ featuresEnabled: { VOWELS: enabled } })
+}
+
+const storeShuttleEnabled = async (enabled: boolean): Promise<void> => {
+  await chrome.storage.local.set({ featuresEnabled: { SHUTTLE: enabled } })
 }
 
 const storeSelectedVowel = async (vowel?: string): Promise<void> => {
@@ -30,6 +34,7 @@ export const LocalStorage = {
   loadLocalStorageConfiguration,
   loadSelectedVowel,
   storeVowelReplaceEnabled,
+  storeShuttleEnabled,
   storeSelectedVowel,
   resetSelectedVowel
 }

@@ -9,7 +9,6 @@ const utilShuffleArray = (array: any[]): any[] => {
 };
 
 export const shuffleWords = (root: HTMLElement | Node): void => {
-  console.log(root, 'root');
   getTextNodes(root).forEach((element) => {
     if (element.nodeType === Node.TEXT_NODE && element.textContent !== null) {
       element.textContent = utilShuffleArray(

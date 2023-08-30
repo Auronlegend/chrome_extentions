@@ -5,24 +5,24 @@ import React, { useState, type ReactElement, useEffect } from 'react';
 import { type Feature, FeatureList } from './components/FeatureList/FeatureList';
 import { LocalStorage } from './data/LocalStorage';
 import SecureConnectionView from './components/SecureConnectionView/SecureConnectionView';
+import WordsShuffler from './components/WordsShuffler/WordsShuffler';
 
 function App (): ReactElement {
   const [isPluginVisible, setIsPluginVisible] = useState(false);
   const [selectedFeature, setSelectedFeature] = useState<Feature | null>(null);
   const [featureState, setFeatureState] = useState<Record<Feature | string, boolean>>({});
 
-  const features: Feature[] = ['VOWELS', 'FLASH_IMAGE'];
+  const features: Feature[] = ['VOWELS', 'FLASH_IMAGE', 'SHUTTLE'];
 
   useEffect(() => {
     async function loadFeatureState (): Promise<void> {
       const config = await LocalStorage.loadLocalStorageConfiguration();
-      const isVowelEnabled = config?.isVowelReplaceEnabled ?? false;
-
-      setFeatureState({ VOWELS: isVowelEnabled })
+      const enabledFeature = config?.featuresEnabled
+      setFeatureState(enabledFeature ?? {})
     }
 
     void loadFeatureState();
-  });
+  }, []);
 
   const storeFeatureEnabledState = (feature: Feature, enabled: boolean): void => {
     switch (feature) {
@@ -30,14 +30,18 @@ function App (): ReactElement {
         void LocalStorage.storeVowelReplaceEnabled(enabled);
         void chrome.tabs.reload();
         break;
+      case 'SHUTTLE':
+        void LocalStorage.storeShuttleEnabled(enabled);
+        void chrome.tabs.reload();
+        break;
     }
   }
 
   const handleToggleFeature = (feature: Feature, enabled: boolean): void => {
-    setFeatureState(prevState => ({
-      ...(prevState ?? {}),
+    setFeatureState({
+      ...(featureState ?? {}),
       [feature]: enabled
-    }));
+    });
     storeFeatureEnabledState(feature, enabled);
   };
 
@@ -54,6 +58,7 @@ function App (): ReactElement {
   const getJsxElementFromFeature = (feature: Feature): JSX.Element | undefined => {
     switch (feature) {
       case 'VOWELS': return <VowelsReplacerMenu/>;
+      case 'SHUTTLE': return <WordsShuffler/>;
       default: return undefined;
     }
   }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export type Feature = 'VOWELS' | 'FLASH_IMAGE';
+export type Feature = 'VOWELS' | 'FLASH_IMAGE' | 'SHUTTLE';
 
 interface FeatureListProps {
   features: Feature[]

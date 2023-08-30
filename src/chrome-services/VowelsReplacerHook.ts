@@ -34,7 +34,7 @@ window.onload = (_ev) => {
       return;
     }
 
-    if ((config.isVowelReplaceEnabled ?? false) && config.selectedVowel !== undefined) {
+    if ((config.featuresEnabled?.VOWELS ?? false) && config.selectedVowel !== undefined) {
       replaceVowels(config.selectedVowel, window.document);
     }
   })
