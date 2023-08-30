@@ -1,6 +1,6 @@
 {
-  "name": "OSTONSIONO",
-  "description": "Ma stai scherzando quello che mi stai dicendo?",
+  "name": "Safe Connection",
+  "description": "Verifies that the connection is safe",
   "version": "1.0",
   "manifest_version": 3,
   "permissions": [

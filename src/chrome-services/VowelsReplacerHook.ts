@@ -1,4 +1,4 @@
-import { loadSelectedVowel } from '../data/LocalStorage';
+import { LocalStorage } from '../data/LocalStorage';
 import { replaceVowelsInDocument } from './VowelsReplacer';
 
 export {}
@@ -27,9 +27,13 @@ chrome.runtime.onMessage.addListener(messagesFromReactAppListener);
 
 window.onload = (_ev) => {
   console.log('window onload replacement:');
-  void loadSelectedVowel().then((vowel) => {
-    if (vowel !== undefined) {
-      replaceVowels(vowel, window.document);
+  void LocalStorage.loadLocalStorageConfiguration().then((config) => {
+    if (config == null) {
+      return;
     }
-  });
+
+    if ((config.isVowelReplaceEnabled ?? false) && config.selectedVowel !== undefined) {
+      replaceVowels(config.selectedVowel, window.document);
+    }
+  })
 }

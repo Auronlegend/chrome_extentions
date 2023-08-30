@@ -6,7 +6,7 @@ const charToVowelLambda = (vowel: string) => (ch: string) => VOWELS.includes(ch.
   ? (isUpperCase(ch) ? vowel.toUpperCase() : vowel)
   : ch;
 
-const replaceVowelsInText = (text: string, vowel: string): string => text.split('')
+export const replaceVowelsInText = (text: string, vowel: string): string => text.split('')
   .map(charToVowelLambda(vowel))
   .join('')
 
@@ -33,6 +33,9 @@ const getTextNodes = (parent: HTMLElement | Node): Node[] => {
 }
 
 export const replaceVowelsInDocument = (root: HTMLElement | Node, vowel: string): void => {
+  if (vowel === '' || vowel === undefined || vowel === null) {
+    return;
+  }
   console.log('Replacing all vowels with: ' + vowel);
   getTextNodes(root).forEach((element) => {
     if (element.nodeType === Node.TEXT_NODE) {
