@@ -1,7 +1,6 @@
 import { shuffleWords } from './WordsShuffler';
 import { LocalStorage } from '../data/LocalStorage';
 
-
 export {}
 
 // Function called when a new message is received
@@ -30,7 +29,6 @@ window.onload = (_ev) => {
 
     if ((config.featuresEnabled?.SHUTTLE ?? false)) {
       shuffleWords(window.document)
-
     }
   })
 }
