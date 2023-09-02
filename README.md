@@ -3,13 +3,13 @@
 Fai così:
 
 ```bash
-npm install
+yarn
 ```
 
 Poi fai così:
 
 ```bash
-npm run build
+yarn build
 ``````
 
 Butta la cartella build dentro Chrome nella shtoria delle eshtensioni, e salvati.

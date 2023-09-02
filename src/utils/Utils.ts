@@ -1,3 +1,11 @@
+export const shuffleArray = (array: any[]): any[] => {
+  array.forEach((_, i) => {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  });
+  return array;
+};
+
 export const sendMessageToActiveTab = async (msg: any): Promise<any> => {
   return await new Promise((resolve) => {
     (chrome.tabs !== undefined) && chrome.tabs.query({
