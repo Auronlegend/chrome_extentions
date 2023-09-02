@@ -2,7 +2,7 @@ import React, { type ReactElement, useEffect, useState } from 'react';
 import ButtonList from '../ButtonList/ButtonList';
 import { sendMessageToActiveTab } from '../../utils/Utils';
 import { LocalStorage } from '../../data/LocalStorage';
-import { replaceVowelsInText } from '../../chrome-services/VowelsReplacer';
+import { replaceVowelsInText } from '../../features/VowelsReplacer';
 
 const VOWELS = ['A', 'E', 'I', 'O', 'U'];
 

@@ -15,29 +15,6 @@ export const replaceVowelsInText = (text: string, vowel: string): string => text
   .map(charToVowelLambda(vowel))
   .join('')
 
-// FUNCTUUN MUUVUD TU UTULS.TS
-// const getTextNodes = (parent: HTMLElement | Node): Node[] => {
-//   const walker = document.createTreeWalker(
-//     parent,
-//     NodeFilter.SHOW_TEXT,
-//     {
-//       acceptNode: function (node: Node) {
-//         if (['SCRIPT', 'STYLE'].includes(node.parentNode?.nodeName.toUpperCase() ?? '')) {
-//           return NodeFilter.FILTER_REJECT;
-//         }
-//         return NodeFilter.FILTER_ACCEPT;
-//       }
-//     }
-//   );
-//   const textNodes = [];
-
-//   let node
-//   while ((node = walker.nextNode()) != null) {
-//     textNodes.push(node);
-//   }
-//   return textNodes;
-// }
-
 export const replaceVowelsInDocument = (root: HTMLElement | Node, vowel: string): void => {
   if (vowel === '' || vowel === undefined || vowel === null) {
     return;
@@ -53,4 +30,4 @@ export const replaceVowelsInDocument = (root: HTMLElement | Node, vowel: string)
       replaceVowelsInDocument(element, vowel);
     }
   });
-};
+}

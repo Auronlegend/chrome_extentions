@@ -19,7 +19,7 @@ module.exports = {
                 ...webpackConfig,
                 entry: {
                     main: [env === 'development' && require.resolve('react-dev-utils/webpackHotDevClient'),paths.appIndexJs].filter(Boolean),
-                    content: ['./src/chrome-services/VowelsReplacerHook.ts', './src/chrome-services/WordsShufflerHook.ts'],
+                    content: ['./src/chrome-services/DocumentModifierHook.ts'],
                 },
                 output: {
                     ...webpackConfig.output,
