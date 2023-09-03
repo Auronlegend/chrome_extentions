@@ -1,6 +1,6 @@
 import { LocalStorage } from '../data/LocalStorage';
 import { replaceVowelsInDocument, replaceVowelsInText } from '../features/VowelsReplacer';
-import { shuffleWords, shuffleWordsInDocument } from '../features/WordsShuffler';
+import { isShuffableText, shuffleWords, shuffleWordsInDocument } from '../features/WordsShuffler';
 import { DOMTextReplacer } from '../helpers/DOMTextReplacer';
 
 export {}
@@ -46,7 +46,10 @@ window.onload = (_ev) => {
 
     if ((config.featuresEnabled?.SHUTTLE ?? false)) {
       textReplacer.addFunction('shuffle-words', (text: string) => {
-        return shuffleWords(text);
+        if (isShuffableText(text)) {
+          return shuffleWords(text);
+        }
+        return text;
       });
     }
 

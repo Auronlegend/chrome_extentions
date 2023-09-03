@@ -12,7 +12,7 @@ function App (): ReactElement {
   const [selectedFeature, setSelectedFeature] = useState<Feature | null>(null);
   const [featureState, setFeatureState] = useState<Record<Feature | string, boolean>>({});
 
-  const features: Feature[] = ['VOWELS', 'FLASH_IMAGE', 'SHUTTLE'];
+  const features: Feature[] = ['VOWELS', 'SHUTTLE'];
 
   useEffect(() => {
     async function loadFeatureState (): Promise<void> {
