@@ -1,3 +1,15 @@
+export const shuffleArrayWithIntensity = (array: any[], intensity: number): any[] => {
+  array.forEach((_, i) => {
+    const rnd = Math.random() * 9; // Random number from 0 to 9
+    if (rnd > intensity) {
+      return; // Skip this shuffle - if intensity = 10 it is always false
+    }
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  });
+  return array;
+}
+
 export const shuffleArray = (array: any[]): any[] => {
   array.forEach((_, i) => {
     const j = Math.floor(Math.random() * (i + 1));

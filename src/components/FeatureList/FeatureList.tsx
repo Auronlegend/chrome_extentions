@@ -12,7 +12,7 @@ interface FeatureListProps {
 export function FeatureList ({ features, featureState, onToggleFeature, onFeatureClick }: FeatureListProps): JSX.Element {
   return (
       <div className="feature-list">
-        <h2>Feature Menu</h2>
+        <h2>Settings</h2>
         <ul>
           {features.map(feature => (
             <li key={feature} className={featureState[feature] ? 'feature-list-item-enabled' : 'feature-list-item-disabled'}>

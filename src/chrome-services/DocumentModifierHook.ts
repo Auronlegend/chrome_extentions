@@ -18,7 +18,7 @@ const messagesFromReactAppListener = (
   }
 
   if (msg.shuffleWords === true) {
-    shuffleWordsInDocument(document)
+    shuffleWordsInDocument(document, msg.shuffleWordsIntensity ?? 10)
   }
 
   sendResponse('OK');
@@ -47,7 +47,7 @@ window.onload = (_ev) => {
     if ((config.featuresEnabled?.SHUTTLE ?? false)) {
       textReplacer.addFunction('shuffle-words', (text: string) => {
         if (isShuffableText(text)) {
-          return shuffleWords(text);
+          return shuffleWords(text, config.shuffleWordsIntensity ?? 10);
         }
         return text;
       });

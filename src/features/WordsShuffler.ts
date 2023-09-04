@@ -1,9 +1,9 @@
-import { getTextNodes, shuffleArray } from '../utils/Utils';
+import { getTextNodes, shuffleArrayWithIntensity } from '../utils/Utils';
 
 const LEADING_SPACES_REGEX = /^\s*/;
 const TRAILING_SPACES_REGEX = /\s*$/;
 
-export const shuffleWords = (text: string): string => {
+export const shuffleWords = (text: string, intensity: number): string => {
   const leadingSpaces = LEADING_SPACES_REGEX.exec(text) ?? [];
   const kevinSpaces = TRAILING_SPACES_REGEX.exec(text) ?? [];
 
@@ -16,7 +16,9 @@ export const shuffleWords = (text: string): string => {
     .map((e) => e.replace(/(\r\n|\n|\r)/gm, ''))
     .filter((e) => e.trim().length !== 0 && !(e.includes('\n')));
 
-  return ' '.repeat(numOfLeadingSpaces) + shuffleArray(parts).join(' ') + ' '.repeat(numOfKevinSpaces);
+  return ' '.repeat(numOfLeadingSpaces) +
+    shuffleArrayWithIntensity(parts, intensity).join(' ') +
+    ' '.repeat(numOfKevinSpaces);
 }
 
 export const isShuffableText = (text: string): boolean =>
@@ -24,11 +26,12 @@ export const isShuffableText = (text: string): boolean =>
   text.trim().length !== 0 &&
   !/^(\s|\r\n|\n|\r)*$/gm.test(text.trim());
 
-export const shuffleWordsInDocument = (root: HTMLElement | Node): void => {
+export const shuffleWordsInDocument = (root: HTMLElement | Node, intensity: number): void => {
+  console.log('Shuffling words in document with intensity: ' + intensity);
   getTextNodes(root).forEach((element) => {
     const text = element.textContent ?? ''
     if (isShuffableText(text)) {
-      element.textContent = shuffleWords(text);
+      element.textContent = shuffleWords(text, intensity);
     }
   });
 };

@@ -32,6 +32,13 @@ const storeShuttleEnabled = async (enabled: boolean): Promise<void> => {
   await storeFeatureEnabled('SHUTTLE', enabled);
 }
 
+const storeShuttleIntensity = async (value: number): Promise<void> => {
+  if (value < 1 || value > 10) {
+    console.log('Cannot store invalid intensity value ' + value);
+  }
+  await saveLocalStorageProperty('shuffleWordsIntensity', value);
+}
+
 const storeFeatureEnabled = async (feature: Feature, enabled: boolean): Promise<void> => {
   const config = await loadLocalStorageConfiguration() ?? {}
   const featuresEnabled = {
@@ -54,6 +61,7 @@ export const LocalStorage = {
   loadSelectedVowel,
   storeVowelReplaceEnabled,
   storeShuttleEnabled,
+  storeShuttleIntensity,
   storeSelectedVowel,
   resetSelectedVowel
 }

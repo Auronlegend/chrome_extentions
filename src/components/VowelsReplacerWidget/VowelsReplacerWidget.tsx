@@ -14,7 +14,7 @@ const replaceVowelsInActiveTab = async (vowel: string): Promise<void> => {
   await sendMessageToActiveTab({ selectedVowel: vowel.toLowerCase() })
 }
 
-const VowelsReplacerMenu = (props: { title?: string }): ReactElement => {
+const VowelsReplacerWidget = (props: { title?: string }): ReactElement => {
   const [selectedVowel, setSelectedVowel] = useState<string | undefined>(undefined);
 
   useEffect(() => {
@@ -53,4 +53,4 @@ const VowelsReplacerMenu = (props: { title?: string }): ReactElement => {
   );
 }
 
-export default VowelsReplacerMenu;
+export default VowelsReplacerWidget;

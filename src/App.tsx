@@ -1,11 +1,11 @@
 import { type JSX } from 'react/jsx-runtime';
 import './App.css';
-import VowelsReplacerMenu from './components/VowelsReplacerMenu/VowelsReplacerMenu';
+import VowelsReplacerWidget from './components/VowelsReplacerWidget/VowelsReplacerWidget';
 import React, { useState, type ReactElement, useEffect } from 'react';
 import { type Feature, FeatureList } from './components/FeatureList/FeatureList';
 import { LocalStorage } from './data/LocalStorage';
 import SecureConnectionView from './components/SecureConnectionView/SecureConnectionView';
-import WordsShuffler from './components/WordsShuffler/WordsShuffler';
+import WordsShufflerWidget from './components/WordsShufflerWidget/WordsShufflerWidget';
 
 function App (): ReactElement {
   const [isPluginVisible, setIsPluginVisible] = useState(false);
@@ -57,8 +57,8 @@ function App (): ReactElement {
 
   const getJsxElementFromFeature = (feature: Feature): JSX.Element | undefined => {
     switch (feature) {
-      case 'VOWELS': return <VowelsReplacerMenu/>;
-      case 'SHUTTLE': return <WordsShuffler/>;
+      case 'VOWELS': return <VowelsReplacerWidget/>;
+      case 'SHUTTLE': return <WordsShufflerWidget/>;
       default: return undefined;
     }
   }
