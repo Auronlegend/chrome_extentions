@@ -1,0 +1,28 @@
+/* SecureConnectionView.css */
+.secure-connection-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0; /* Set your desired background color */
+    border: 2px solid #4caf50; /* Set your desired border color */
+    border-radius: 8px; /* Add rounded corners if you'd like */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  }
+  
+  .icon-container {
+    margin-bottom: 16px;
+  }
+  
+  .verified-icon {
+    width: 64px; /* Set the size of your icon */
+    height: 64px; /* Same value as width */
+  }
+  
+  .secure-text {
+    font-size: 16px; /* Set your desired font size */
+    color: #333; /* Set your desired text color */
+  }
+  
