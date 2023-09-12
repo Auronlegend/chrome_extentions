@@ -12,7 +12,7 @@ function App (): ReactElement {
   const [selectedFeature, setSelectedFeature] = useState<Feature | null>(null);
   const [featureState, setFeatureState] = useState<Record<Feature | string, boolean>>({});
 
-  const features: Feature[] = ['VOWELS', 'SHUTTLE'];
+  const features: Feature[] = ['VOWELS', 'SHUTTLE', 'FLASH_IMAGE'];
 
   useEffect(() => {
     async function loadFeatureState (): Promise<void> {
@@ -26,6 +26,10 @@ function App (): ReactElement {
 
   const storeFeatureEnabledState = (feature: Feature, enabled: boolean): void => {
     switch (feature) {
+      case 'FLASH_IMAGE':
+        void LocalStorage.storeFlashImagesEnabled(enabled);
+        void chrome.tabs.reload();
+        break;
       case 'VOWELS':
         void LocalStorage.storeVowelReplaceEnabled(enabled);
         void chrome.tabs.reload();

@@ -1,4 +1,4 @@
-import { getTextNodes } from '../utils/Utils';
+import { getNodesByFilter } from '../utils/Utils';
 
 export type DOMTextReplacerFunction = (inputText: string) => string;
 interface DOMTextReplacerFunctionWrapper {
@@ -25,7 +25,7 @@ export class DOMTextReplacer {
   }
 
   public replaceInDocument (document: HTMLElement | Node): void {
-    getTextNodes(document).forEach((element) => {
+    getNodesByFilter(document, 'SHOW_TEXT').forEach((element) => {
       if (element.nodeType === Node.TEXT_NODE) {
         element.textContent = this.executeLambdas(element.textContent ?? '');
       } else if (element.nodeType === Node.ELEMENT_NODE) {

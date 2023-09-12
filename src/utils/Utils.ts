@@ -31,14 +31,17 @@ export const sendMessageToActiveTab = async (msg: any): Promise<any> => {
   });
 }
 
-export const getTextNodes = (parent: HTMLElement | Node): Node[] => {
+export const getNodesByFilter = (parent: HTMLElement | Node, filterMode: keyof typeof NodeFilter): Node[] => {
   const walker = document.createTreeWalker(
     parent,
-    NodeFilter.SHOW_TEXT,
+    NodeFilter[filterMode],
     {
       acceptNode: function (node: Node) {
-        if (['SCRIPT', 'STYLE'].includes(node.parentNode?.nodeName.toUpperCase() ?? '')) {
+        if (filterMode === 'SHOW_TEXT' && ['SCRIPT', 'STYLE'].includes(node.parentNode?.nodeName.toUpperCase() ?? '')) {
           return NodeFilter.FILTER_REJECT;
+        }
+        if (filterMode === 'SHOW_ALL' && !['DIV', 'IMG'].includes(node.nodeName.toUpperCase() ?? '')) {
+          return NodeFilter.FILTER_ACCEPT;
         }
         return NodeFilter.FILTER_ACCEPT;
       }

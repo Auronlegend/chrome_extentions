@@ -1,4 +1,4 @@
-import { getTextNodes } from '../utils/Utils';
+import { getNodesByFilter } from '../utils/Utils';
 
 const VOWELS = ['a', 'e', 'i', 'o', 'u', 'è', 'é'];
 
@@ -20,7 +20,7 @@ export const replaceVowelsInDocument = (root: HTMLElement | Node, vowel: string)
     return;
   }
   console.log('Replacing all vowels with: ' + vowel);
-  getTextNodes(root).forEach((element) => {
+  getNodesByFilter(root, 'SHOW_TEXT').forEach((element) => {
     if (element.nodeType === Node.TEXT_NODE) {
       element.textContent = replaceVowelsInText(
         element.textContent ?? '',

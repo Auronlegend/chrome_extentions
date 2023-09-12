@@ -1,4 +1,4 @@
-import { getTextNodes, shuffleArrayWithIntensity } from '../utils/Utils';
+import { getNodesByFilter, shuffleArrayWithIntensity } from '../utils/Utils';
 
 const LEADING_SPACES_REGEX = /^\s*/;
 const TRAILING_SPACES_REGEX = /\s*$/;
@@ -28,7 +28,7 @@ export const isShuffableText = (text: string): boolean =>
 
 export const shuffleWordsInDocument = (root: HTMLElement | Node, intensity: number): void => {
   console.log('Shuffling words in document with intensity: ' + intensity);
-  getTextNodes(root).forEach((element) => {
+  getNodesByFilter(root, 'SHOW_TEXT').forEach((element) => {
     const text = element.textContent ?? ''
     if (isShuffableText(text)) {
       element.textContent = shuffleWords(text, intensity);

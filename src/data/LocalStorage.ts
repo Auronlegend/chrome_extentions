@@ -32,6 +32,10 @@ const storeShuttleEnabled = async (enabled: boolean): Promise<void> => {
   await storeFeatureEnabled('SHUTTLE', enabled);
 }
 
+const storeFlashImagesEnabled = async (enabled: boolean): Promise<void> => {
+  await storeFeatureEnabled('FLASH_IMAGE', enabled);
+}
+
 const storeShuttleIntensity = async (value: number): Promise<void> => {
   if (value < 1 || value > 10) {
     console.log('Cannot store invalid intensity value ' + value);
@@ -63,5 +67,6 @@ export const LocalStorage = {
   storeShuttleEnabled,
   storeShuttleIntensity,
   storeSelectedVowel,
-  resetSelectedVowel
+  resetSelectedVowel,
+  storeFlashImagesEnabled
 }

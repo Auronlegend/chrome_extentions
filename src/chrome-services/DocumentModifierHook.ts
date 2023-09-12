@@ -1,4 +1,5 @@
 import { LocalStorage } from '../data/LocalStorage';
+import { flashImagesInDocument } from '../features/FlashingImage';
 import { replaceVowelsInDocument, replaceVowelsInText } from '../features/VowelsReplacer';
 import { isShuffableText, shuffleWords, shuffleWordsInDocument } from '../features/WordsShuffler';
 import { DOMTextReplacer } from '../helpers/DOMTextReplacer';
@@ -19,6 +20,10 @@ const messagesFromReactAppListener = (
 
   if (msg.shuffleWords === true) {
     shuffleWordsInDocument(document, msg.shuffleWordsIntensity ?? 10)
+  }
+
+  if (msg.flashImages === true) {
+    flashImagesInDocument(document);
   }
 
   sendResponse('OK');
@@ -51,6 +56,10 @@ window.onload = (_ev) => {
         }
         return text;
       });
+    }
+
+    if ((config.featuresEnabled?.FLASH_IMAGE ?? false)) {
+      flashImagesInDocument(document)
     }
 
     textReplacer.replaceInDocument(document);
