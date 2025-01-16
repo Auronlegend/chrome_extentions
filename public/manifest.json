@@ -1,0 +1,51 @@
+{
+  "name": "Safe Connection",
+  "description": "Verifies that the connection is safe",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": [
+    "activeTab",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions" : [
+    "http://*/*", 
+    "https://*/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "1.jpeg",
+        "2.jpeg",
+        "3.jpeg",
+        "4.jpeg",
+        "5.jpeg",
+        "6.jpeg",
+        "7.jpeg",
+        "8.jpeg",
+        "9.jpeg",
+        "10.jpeg",
+        "public/logo.jpeg"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Open the popup"
+  },
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "content_scripts": [
+    {
+        "matches": ["http://*/*", "https://*/*"],
+        "js": ["./static/js/content.js"],
+        "run_at": "document_end"
+    }
+ ]
+}
